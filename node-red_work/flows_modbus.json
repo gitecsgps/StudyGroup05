@@ -1,0 +1,270 @@
+[
+    {
+        "id": "14b28b6050a7fe91",
+        "type": "tab",
+        "label": "フロー 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "65cefdde7b99555b",
+        "type": "comment",
+        "z": "14b28b6050a7fe91",
+        "name": "MODBUSでFX5Uに接続",
+        "info": "",
+        "x": 130,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "7b623fde5b667b12",
+        "type": "modbus-read",
+        "z": "14b28b6050a7fe91",
+        "d": true,
+        "name": "Read Y0",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "",
+        "dataType": "Coil",
+        "adr": "0",
+        "quantity": "1",
+        "rate": "1",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "server": "ae82d8e7b9cfa4a9",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 160,
+        "y": 220,
+        "wires": [
+            [
+                "62f97e204dafc3c9"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "62f97e204dafc3c9",
+        "type": "debug",
+        "z": "14b28b6050a7fe91",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "e64082a0ca25a224",
+        "type": "modbus-read",
+        "z": "14b28b6050a7fe91",
+        "d": true,
+        "name": "Read X0",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "",
+        "dataType": "Input",
+        "adr": "0",
+        "quantity": "1",
+        "rate": "1",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "server": "ae82d8e7b9cfa4a9",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 160,
+        "y": 280,
+        "wires": [
+            [
+                "62f97e204dafc3c9"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "538021225a9bda0a",
+        "type": "modbus-read",
+        "z": "14b28b6050a7fe91",
+        "d": true,
+        "name": "Read D0",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "",
+        "dataType": "HoldingRegister",
+        "adr": "0",
+        "quantity": "1",
+        "rate": "1",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "server": "ae82d8e7b9cfa4a9",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 160,
+        "y": 340,
+        "wires": [
+            [
+                "62f97e204dafc3c9"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "6fc9d516de5b4d5a",
+        "type": "modbus-write",
+        "z": "14b28b6050a7fe91",
+        "d": true,
+        "name": "Write D0",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "",
+        "dataType": "HoldingRegister",
+        "adr": "0",
+        "quantity": "1",
+        "server": "ae82d8e7b9cfa4a9",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 540,
+        "y": 500,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "96c39be70161fa87",
+        "type": "inject",
+        "z": "14b28b6050a7fe91",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 190,
+        "y": 500,
+        "wires": [
+            [
+                "e6a84fd147eeea60"
+            ]
+        ]
+    },
+    {
+        "id": "e6a84fd147eeea60",
+        "type": "function",
+        "z": "14b28b6050a7fe91",
+        "name": "function 1",
+        "func": "// 数値カウンタ\nmsg.payload = flow.count + 1;\nflow.count = msg.payload;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "// ここに記述したコードは、ノードをデプロイした時に\n// 一度だけ実行されます。\n\nflow.count = 0;\n",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 500,
+        "wires": [
+            [
+                "6fc9d516de5b4d5a"
+            ]
+        ]
+    },
+    {
+        "id": "8844c343a5552f9a",
+        "type": "comment",
+        "z": "14b28b6050a7fe91",
+        "name": "読み込み（FX5U → Node-RED）",
+        "info": "",
+        "x": 170,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "e5f245f4204839d2",
+        "type": "comment",
+        "z": "14b28b6050a7fe91",
+        "name": "書き込み（Node-RED → FX5U）",
+        "info": "",
+        "x": 170,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "ae82d8e7b9cfa4a9",
+        "type": "modbus-client",
+        "name": "Mitsubishi FX5U-32M",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "192.168.1.101",
+        "tcpPort": 502,
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": 9600,
+        "serialDatabits": 8,
+        "serialStopbits": 1,
+        "serialParity": "none",
+        "serialConnectionDelay": 100,
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": 1,
+        "commandDelay": 1,
+        "clientTimeout": 1000,
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": 2000,
+        "parallelUnitIdsAllowed": true,
+        "showErrors": false,
+        "showWarnings": true,
+        "showLogs": true
+    },
+    {
+        "id": "bdab5508c666fb7b",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-contrib-modbus": "5.60.2"
+        }
+    }
+]

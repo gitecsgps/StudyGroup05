@@ -1,0 +1,255 @@
+[
+    {
+        "id": "d0b5db3160eeb061",
+        "type": "tab",
+        "label": "フロー 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "1e672073adb7fefd",
+        "type": "OpcUa-Client",
+        "z": "d0b5db3160eeb061",
+        "endpoint": "55bc67056e96a5cc",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "setstatusandtime": false,
+        "keepsessionalive": false,
+        "name": "",
+        "applicationName": "",
+        "applicationUri": "",
+        "x": 540,
+        "y": 580,
+        "wires": [
+            [
+                "d875b9c7a732d128"
+            ],
+            [
+                "d875b9c7a732d128"
+            ],
+            [
+                "d875b9c7a732d128"
+            ]
+        ]
+    },
+    {
+        "id": "d875b9c7a732d128",
+        "type": "debug",
+        "z": "d0b5db3160eeb061",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "0809ab296fd2d725",
+        "type": "OpcUa-Browser",
+        "z": "d0b5db3160eeb061",
+        "endpoint": "55bc67056e96a5cc",
+        "item": "",
+        "datatype": "",
+        "topic": "",
+        "items": [],
+        "name": "",
+        "x": 350,
+        "y": 340,
+        "wires": [
+            [
+                "d875b9c7a732d128"
+            ]
+        ]
+    },
+    {
+        "id": "bd478a59c996def2",
+        "type": "inject",
+        "z": "d0b5db3160eeb061",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 340,
+        "wires": [
+            [
+                "0809ab296fd2d725"
+            ]
+        ]
+    },
+    {
+        "id": "fa02cb5cc36391d8",
+        "type": "OpcUa-Browser",
+        "z": "d0b5db3160eeb061",
+        "endpoint": "55bc67056e96a5cc",
+        "item": "",
+        "datatype": "",
+        "topic": "ns=7;s=AQAAAKbhKnGK9zM6pOIjfIDtJRQ=",
+        "items": [],
+        "name": "",
+        "x": 350,
+        "y": 460,
+        "wires": [
+            [
+                "d875b9c7a732d128"
+            ]
+        ]
+    },
+    {
+        "id": "acc441682484f095",
+        "type": "inject",
+        "z": "d0b5db3160eeb061",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 460,
+        "wires": [
+            [
+                "fa02cb5cc36391d8"
+            ]
+        ]
+    },
+    {
+        "id": "c23f33c4492baa92",
+        "type": "OpcUa-Item",
+        "z": "d0b5db3160eeb061",
+        "item": "ns=7;s=AQAAAKbhKnGK9zM6pOIjfIDtJTqq7DV6neYyFA==",
+        "datatype": "Int16",
+        "value": "",
+        "name": "Counter",
+        "x": 320,
+        "y": 580,
+        "wires": [
+            [
+                "1e672073adb7fefd"
+            ]
+        ]
+    },
+    {
+        "id": "54b8d34234680dc6",
+        "type": "inject",
+        "z": "d0b5db3160eeb061",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 580,
+        "wires": [
+            [
+                "c23f33c4492baa92"
+            ]
+        ]
+    },
+    {
+        "id": "3b471bc5405844f4",
+        "type": "comment",
+        "z": "d0b5db3160eeb061",
+        "name": "1. OPC UA サーバに接続して最上位ノード情報を取得　⇒　Machineノードがあることを確認",
+        "info": "",
+        "x": 340,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "4951608478399835",
+        "type": "comment",
+        "z": "d0b5db3160eeb061",
+        "name": "2. Machineノードを参照して、そこに含まれるノードを確認 → Counterノードがあることを確認",
+        "info": "",
+        "x": 350,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "01878162bcf218bc",
+        "type": "comment",
+        "z": "d0b5db3160eeb061",
+        "name": "3. Machine.Counter ノードの値を取得",
+        "info": "",
+        "x": 170,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "55bc67056e96a5cc",
+        "type": "OpcUa-Endpoint",
+        "name": "Raspi Black",
+        "endpoint": "opc.tcp://192.168.100.224:4840",
+        "secpol": "None",
+        "secmode": "None",
+        "none": true,
+        "login": false,
+        "usercert": false,
+        "usercertificate": "",
+        "userprivatekey": ""
+    },
+    {
+        "id": "64e4dcd8a1653c52",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-contrib-opcua": "0.2.355"
+        }
+    }
+]
