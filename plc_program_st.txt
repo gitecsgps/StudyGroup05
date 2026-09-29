@@ -1,0 +1,30 @@
+PROGRAM PLC_PRG
+VAR
+    // ランプ制御
+    xLamp : BOOL := FALSE;
+
+    // HMIから操作するボタン
+    xLampOn : BOOL := FALSE;
+    xLampOff : BOOL := FALSE;
+
+    // HMIに表示する数値
+    rValue : REAL := 123.456
+;
+
+    // HMIから入力された文字列
+    sInput : STRING(100) := '';
+END_VAR
+
+
+// ランプONボタンが押されたら点灯
+IF xLampOn THEN
+    xLamp := TRUE;
+    xLampOn := FALSE;
+END_IF;
+
+
+// ランプOFFボタンが押されたら消灯
+IF xLampOff THEN
+    xLamp := FALSE;
+    xLampOff := FALSE;
+END_IF;
