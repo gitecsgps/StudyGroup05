@@ -1,0 +1,1019 @@
+[
+    {
+        "id": "0265da019e346962",
+        "type": "tab",
+        "label": "フロー 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "9bd3decd15af8f01",
+        "type": "OpcUa-Item",
+        "z": "0265da019e346962",
+        "item": "ns=1;i=1",
+        "datatype": "Int16",
+        "value": "",
+        "name": "CPU_state",
+        "x": 350,
+        "y": 200,
+        "wires": [
+            [
+                "b2a1159512c34db0"
+            ]
+        ]
+    },
+    {
+        "id": "b2a1159512c34db0",
+        "type": "OpcUa-Client",
+        "z": "0265da019e346962",
+        "endpoint": "35826dcfa84d6f8b",
+        "action": "subscribe",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": "100",
+        "timeUnit": "ms",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "setstatusandtime": false,
+        "keepsessionalive": false,
+        "name": "",
+        "applicationName": "",
+        "applicationUri": "",
+        "x": 580,
+        "y": 200,
+        "wires": [
+            [
+                "cfe3aab1d916c9cc"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "faf4a60c16701e6e",
+        "type": "inject",
+        "z": "0265da019e346962",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 200,
+        "wires": [
+            [
+                "9bd3decd15af8f01",
+                "19e5854f921eb222",
+                "ccd2a8811a9d0b88",
+                "d776cc3646c5c828",
+                "d38302698b134241"
+            ]
+        ]
+    },
+    {
+        "id": "62d3f863222c3c0d",
+        "type": "debug",
+        "z": "0265da019e346962",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "1ea58096e40fd70a",
+        "type": "comment",
+        "z": "0265da019e346962",
+        "name": "OPC UAでFX5Uに接続",
+        "info": "",
+        "x": 120,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "2e18e59c232ccb9b",
+        "type": "ui-chart",
+        "z": "0265da019e346962",
+        "group": "1d5dc8b8b601508c",
+        "name": "自動実行回数",
+        "label": "自動実行回数",
+        "order": 1,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "",
+        "xAxisProperty": "",
+        "xAxisPropertyType": "timestamp",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "",
+        "xmax": "",
+        "yAxisLabel": "",
+        "yAxisProperty": "payload",
+        "yAxisPropertyType": "msg",
+        "ymin": "",
+        "ymax": "",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": false,
+        "pointShape": "circle",
+        "pointRadius": 4,
+        "showLegend": false,
+        "removeOlder": 1,
+        "removeOlderUnit": "60",
+        "removeOlderPoints": "",
+        "colors": [
+            "#0095ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#a347e1",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": 6,
+        "height": 5,
+        "className": "",
+        "interpolation": "linear",
+        "x": 960,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "33ab66f54434f20e",
+        "type": "ui-text",
+        "z": "0265da019e346962",
+        "group": "ac9aaed9d6bb66ef",
+        "order": 6,
+        "width": 2,
+        "height": 0,
+        "name": "操作ミス回数",
+        "label": "操作ミス回数",
+        "format": "{{msg.payload}}",
+        "layout": "row-right",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 960,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "19e5854f921eb222",
+        "type": "OpcUa-Item",
+        "z": "0265da019e346962",
+        "item": "ns=1;i=2",
+        "datatype": "UInt16",
+        "value": "",
+        "name": "T0_count",
+        "x": 340,
+        "y": 240,
+        "wires": [
+            [
+                "b2a1159512c34db0"
+            ]
+        ]
+    },
+    {
+        "id": "a6594b8799805c07",
+        "type": "ui-led",
+        "z": "0265da019e346962",
+        "name": "CPU State",
+        "group": "ac9aaed9d6bb66ef",
+        "order": 2,
+        "width": 3,
+        "height": "3",
+        "label": "CPU State",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "states": [
+            {
+                "value": "false",
+                "valueType": "bool",
+                "color": "#ff0000"
+            },
+            {
+                "value": "true",
+                "valueType": "bool",
+                "color": "#00ff00"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showBorder": false,
+        "showGlow": true,
+        "x": 1110,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "887e7c3a794bea3e",
+        "type": "function",
+        "z": "0265da019e346962",
+        "name": "function 1",
+        "func": "\nif ( msg.payload == 1 ) {\n    msg.payload = true;\n} else {\n    msg.payload = false;\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 220,
+        "wires": [
+            [
+                "a6594b8799805c07"
+            ]
+        ]
+    },
+    {
+        "id": "ccd2a8811a9d0b88",
+        "type": "OpcUa-Item",
+        "z": "0265da019e346962",
+        "item": "ns=1;i=3",
+        "datatype": "UInt16",
+        "value": "",
+        "name": "X0_count",
+        "x": 340,
+        "y": 280,
+        "wires": [
+            [
+                "b2a1159512c34db0"
+            ]
+        ]
+    },
+    {
+        "id": "d776cc3646c5c828",
+        "type": "OpcUa-Item",
+        "z": "0265da019e346962",
+        "item": "ns=1;i=5",
+        "datatype": "UInt16",
+        "value": "",
+        "name": "X0_ignored_count",
+        "x": 370,
+        "y": 360,
+        "wires": [
+            [
+                "b2a1159512c34db0"
+            ]
+        ]
+    },
+    {
+        "id": "d38302698b134241",
+        "type": "OpcUa-Item",
+        "z": "0265da019e346962",
+        "item": "ns=1;i=4",
+        "datatype": "UInt16",
+        "value": "",
+        "name": "Y0_count",
+        "x": 340,
+        "y": 320,
+        "wires": [
+            [
+                "b2a1159512c34db0"
+            ]
+        ]
+    },
+    {
+        "id": "22f9e2f5853551ca",
+        "type": "ui-text",
+        "z": "0265da019e346962",
+        "group": "ac9aaed9d6bb66ef",
+        "order": 4,
+        "width": 2,
+        "height": 0,
+        "name": "操作回数",
+        "label": "操作回数",
+        "format": "{{msg.payload}}",
+        "layout": "row-right",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 940,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "af5f7947dc0342a4",
+        "type": "ui-chart",
+        "z": "0265da019e346962",
+        "group": "1d5dc8b8b601508c",
+        "name": "LED 点灯回数",
+        "label": "LED 点灯回数",
+        "order": 3,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "",
+        "xAxisProperty": "",
+        "xAxisPropertyType": "timestamp",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "",
+        "xmax": "",
+        "yAxisLabel": "",
+        "yAxisProperty": "payload",
+        "yAxisPropertyType": "msg",
+        "ymin": "",
+        "ymax": "",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": false,
+        "pointShape": "circle",
+        "pointRadius": 4,
+        "showLegend": false,
+        "removeOlder": 1,
+        "removeOlderUnit": "60",
+        "removeOlderPoints": "",
+        "colors": [
+            "#0095ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#a347e1",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": 6,
+        "height": 5,
+        "className": "",
+        "interpolation": "linear",
+        "x": 960,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fe3dc5a4534e40e1",
+        "type": "ui-button",
+        "z": "0265da019e346962",
+        "group": "ac9aaed9d6bb66ef",
+        "name": "実行回数リセット",
+        "label": "自動実行回数リセット",
+        "order": 9,
+        "width": 2,
+        "height": 0,
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "0",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 130,
+        "y": 740,
+        "wires": [
+            [
+                "870eb4c7d5cfdb74",
+                "734eece44ad0b31b"
+            ]
+        ]
+    },
+    {
+        "id": "870eb4c7d5cfdb74",
+        "type": "OpcUa-Item",
+        "z": "0265da019e346962",
+        "item": "ns=1;i=2",
+        "datatype": "UInt16",
+        "value": "",
+        "name": "T0_count",
+        "x": 340,
+        "y": 740,
+        "wires": [
+            [
+                "43eb7bc829cd81b3"
+            ]
+        ]
+    },
+    {
+        "id": "008ab7b71ee31d06",
+        "type": "debug",
+        "z": "0265da019e346962",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "cfe3aab1d916c9cc",
+        "type": "switch",
+        "z": "0265da019e346962",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "ns=1;i=1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "ns=1;i=2",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "ns=1;i=3",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "ns=1;i=4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "ns=1;i=5",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 5,
+        "x": 750,
+        "y": 200,
+        "wires": [
+            [
+                "62d3f863222c3c0d",
+                "887e7c3a794bea3e"
+            ],
+            [
+                "620a4c4a8525fa0b"
+            ],
+            [
+                "22f9e2f5853551ca"
+            ],
+            [],
+            [
+                "33ab66f54434f20e"
+            ]
+        ]
+    },
+    {
+        "id": "43eb7bc829cd81b3",
+        "type": "OpcUa-Client",
+        "z": "0265da019e346962",
+        "endpoint": "35826dcfa84d6f8b",
+        "action": "write",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": "1",
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "setstatusandtime": false,
+        "keepsessionalive": false,
+        "name": "",
+        "applicationName": "",
+        "applicationUri": "",
+        "x": 580,
+        "y": 740,
+        "wires": [
+            [
+                "008ab7b71ee31d06"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "2eaf9e84f8cbc64f",
+        "type": "ui-button",
+        "z": "0265da019e346962",
+        "group": "ac9aaed9d6bb66ef",
+        "name": "入力回数クリア",
+        "label": "入力回数クリア",
+        "order": 8,
+        "width": 2,
+        "height": 0,
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "0",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 120,
+        "y": 840,
+        "wires": [
+            [
+                "27c3c6015eb55422",
+                "fad0abf5641a6927"
+            ]
+        ]
+    },
+    {
+        "id": "27c3c6015eb55422",
+        "type": "OpcUa-Item",
+        "z": "0265da019e346962",
+        "item": "ns=1;i=3",
+        "datatype": "UInt16",
+        "value": "",
+        "name": "X0_count",
+        "x": 340,
+        "y": 840,
+        "wires": [
+            [
+                "43eb7bc829cd81b3"
+            ]
+        ]
+    },
+    {
+        "id": "fad0abf5641a6927",
+        "type": "OpcUa-Item",
+        "z": "0265da019e346962",
+        "item": "ns=1;i=5",
+        "datatype": "UInt16",
+        "value": "",
+        "name": "X0_ignored_count",
+        "x": 370,
+        "y": 880,
+        "wires": [
+            [
+                "43eb7bc829cd81b3"
+            ]
+        ]
+    },
+    {
+        "id": "620a4c4a8525fa0b",
+        "type": "ui-text",
+        "z": "0265da019e346962",
+        "group": "ac9aaed9d6bb66ef",
+        "order": 5,
+        "width": 2,
+        "height": 0,
+        "name": "自動実行回数",
+        "label": "自動実行回数",
+        "format": "{{msg.payload}}",
+        "layout": "row-right",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 960,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "42657fd4f3ea340e",
+        "type": "comment",
+        "z": "0265da019e346962",
+        "name": "SCADAの実装（ダッシュボード２）",
+        "info": "",
+        "x": 160,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "8eac0aa7f9f06e32",
+        "type": "OpcUa-Client",
+        "z": "0265da019e346962",
+        "endpoint": "35826dcfa84d6f8b",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": "1",
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "setstatusandtime": false,
+        "keepsessionalive": false,
+        "name": "",
+        "applicationName": "",
+        "applicationUri": "",
+        "x": 580,
+        "y": 500,
+        "wires": [
+            [
+                "ed7448a3e6ca2108"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "ed7448a3e6ca2108",
+        "type": "switch",
+        "z": "0265da019e346962",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "ns=1;i=1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "ns=1;i=2",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "ns=1;i=3",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "ns=1;i=4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "ns=1;i=5",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 5,
+        "x": 750,
+        "y": 500,
+        "wires": [
+            [],
+            [
+                "2e18e59c232ccb9b"
+            ],
+            [],
+            [
+                "af5f7947dc0342a4"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "2a9a73d40b6f2021",
+        "type": "inject",
+        "z": "0265da019e346962",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 500,
+        "wires": [
+            [
+                "f3812db9524a2a13",
+                "b6fce24dd727cf04",
+                "01ccf955bed04978",
+                "cc4277cd4c0c20d9",
+                "7fad8899103f937f"
+            ]
+        ]
+    },
+    {
+        "id": "f3812db9524a2a13",
+        "type": "OpcUa-Item",
+        "z": "0265da019e346962",
+        "item": "ns=1;i=1",
+        "datatype": "Int16",
+        "value": "",
+        "name": "CPU_state",
+        "x": 350,
+        "y": 500,
+        "wires": [
+            [
+                "8eac0aa7f9f06e32"
+            ]
+        ]
+    },
+    {
+        "id": "b6fce24dd727cf04",
+        "type": "OpcUa-Item",
+        "z": "0265da019e346962",
+        "item": "ns=1;i=2",
+        "datatype": "UInt16",
+        "value": "",
+        "name": "T0_count",
+        "x": 340,
+        "y": 540,
+        "wires": [
+            [
+                "8eac0aa7f9f06e32"
+            ]
+        ]
+    },
+    {
+        "id": "01ccf955bed04978",
+        "type": "OpcUa-Item",
+        "z": "0265da019e346962",
+        "item": "ns=1;i=3",
+        "datatype": "UInt16",
+        "value": "",
+        "name": "X0_count",
+        "x": 340,
+        "y": 580,
+        "wires": [
+            [
+                "8eac0aa7f9f06e32"
+            ]
+        ]
+    },
+    {
+        "id": "7fad8899103f937f",
+        "type": "OpcUa-Item",
+        "z": "0265da019e346962",
+        "item": "ns=1;i=5",
+        "datatype": "UInt16",
+        "value": "",
+        "name": "X0_ignored_count",
+        "x": 370,
+        "y": 660,
+        "wires": [
+            [
+                "8eac0aa7f9f06e32"
+            ]
+        ]
+    },
+    {
+        "id": "cc4277cd4c0c20d9",
+        "type": "OpcUa-Item",
+        "z": "0265da019e346962",
+        "item": "ns=1;i=4",
+        "datatype": "UInt16",
+        "value": "",
+        "name": "Y0_count",
+        "x": 340,
+        "y": 620,
+        "wires": [
+            [
+                "8eac0aa7f9f06e32"
+            ]
+        ]
+    },
+    {
+        "id": "734eece44ad0b31b",
+        "type": "OpcUa-Item",
+        "z": "0265da019e346962",
+        "item": "ns=1;i=4",
+        "datatype": "UInt16",
+        "value": "",
+        "name": "Y0_count",
+        "x": 340,
+        "y": 780,
+        "wires": [
+            [
+                "43eb7bc829cd81b3"
+            ]
+        ]
+    },
+    {
+        "id": "35826dcfa84d6f8b",
+        "type": "OpcUa-Endpoint",
+        "name": "FX5U_32M",
+        "endpoint": "opc.tcp://192.168.96.227:4840",
+        "secpol": "None",
+        "secmode": "None",
+        "none": true,
+        "login": false,
+        "usercert": false,
+        "usercertificate": "",
+        "userprivatekey": ""
+    },
+    {
+        "id": "1d5dc8b8b601508c",
+        "type": "ui-group",
+        "name": "Parameter View",
+        "page": "1adb44f66db2638d",
+        "width": 6,
+        "height": 1,
+        "order": 2,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "ac9aaed9d6bb66ef",
+        "type": "ui-group",
+        "name": "general view",
+        "page": "1adb44f66db2638d",
+        "width": 4,
+        "height": 1,
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "1adb44f66db2638d",
+        "type": "ui-page",
+        "name": "FX5U Status",
+        "ui": "edcf39bd990f874b",
+        "path": "/page1",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "8e0ebf3e1126543e",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 1,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "edcf39bd990f874b",
+        "type": "ui-base",
+        "name": "SCADA Main View",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "headerContent": "page",
+        "navigationStyle": "default",
+        "titleBarStyle": "default",
+        "showReconnectNotification": true,
+        "notificationDisplayTime": 1,
+        "showDisconnectNotification": true,
+        "allowInstall": false
+    },
+    {
+        "id": "8e0ebf3e1126543e",
+        "type": "ui-theme",
+        "name": "Default Theme",
+        "colors": {
+            "surface": "#ffffff",
+            "primary": "#0094CE",
+            "bgPage": "#eeeeee",
+            "groupBg": "#ffffff",
+            "groupOutline": "#cccccc"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "e9373f8bbeb706fb",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-contrib-opcua": "0.2.355",
+            "@flowfuse/node-red-dashboard": "1.30.2",
+            "@flowfuse/node-red-dashboard-2-ui-led": "1.1.1"
+        }
+    }
+]
